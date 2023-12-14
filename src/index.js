@@ -42,7 +42,7 @@ function displayWeather() {
   } else {
     wind.textContent = `${currentWeather.current.wind_mph}mph`;
   }
-  
+
   weatherIcon.src = currentWeather.current.condition.icon;
   weatherIcon.alt = `${currentWeather.current.condition.text} icon`;
 }
@@ -62,6 +62,8 @@ async function handleSubmitForm() {
   if (validateForm(form)) {
     try {
       await refreshWeather(cityInput.value);
+      localStorage.setItem('city', cityInput.value);
+      cityInput.value = '';
     } catch (error) {
       showPersonalizedError(
         document.getElementById('city-input'),
@@ -72,7 +74,21 @@ async function handleSubmitForm() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  refreshWeather('Quebec');
+  if ('city' in localStorage) {
+    refreshWeather(localStorage.getItem('city'));
+  } else {
+    refreshWeather('Quebec');
+  }
+
+  if ('tempUnit' in localStorage) {
+    tempUnit = localStorage.getItem('tempUnit');
+    tempLetter.textContent = tempUnit;
+  }
+  if ('windUnit' in localStorage) {
+    windUnit = localStorage.getItem('windUnit');
+    windLetter.textContent = windUnit;
+  }
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     handleSubmitForm();
@@ -85,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tempUnit = 'C';
     }
 
+    localStorage.setItem('tempUnit', tempUnit);
     tempLetter.textContent = tempUnit;
     displayWeather();
   });
@@ -96,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       windUnit = 'k';
     }
 
+    localStorage.setItem('windUnit', windUnit);
     windLetter.textContent = windUnit;
     displayWeather();
   });
