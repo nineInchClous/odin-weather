@@ -1,19 +1,19 @@
 @import "normalize.css", "reset.css";
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,500;1,300&display=swap");
 
 :root.dark {
-    --color-base-bg: rgb(18, 18, 18);
-    --color-base-text: rgb(240, 240, 240);
+  --color-base-bg: rgb(18, 18, 18);
+  --color-base-text: rgb(240, 240, 240);
 }
 :root.light {
-    --color-base-bg: rgb(240, 240, 240);
-    --color-base-text: rgb(18, 18, 18);
+  --color-base-bg: rgb(240, 240, 240);
+  --color-base-text: rgb(18, 18, 18);
 }
 
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 $header-size: 150px;
@@ -22,129 +22,141 @@ $shadow: 2px 2px 2px 0 rgba(51, 51, 51, 0.6);
 $transition: all 0.2s ease;
 
 .visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 .hide {
-    display: none;
+  display: none;
 }
 
 %box {
-    background-color: rgba(51, 51, 51, 0.7);
-    padding: 20px;
-    
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px 0 #333;
-    color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 3px 3px 3px 0 #333;
 }
 %btn {
-    background-color: whitesmoke;
-    border: none;
-    outline: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 200ms ease-in-out;
+  background-color: #333;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
 
-    &:hover {
-        background-color: white;
-    }
+  &:hover {
+    background-color: #111;
+    color: white;
+  }
 }
 
 body {
-    background-image: url('../img/earth.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Roboto Condensed', sans-serif;
-    overflow: hidden;
+  background-image: url("../img/earth.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Roboto Condensed", sans-serif;
+  overflow: hidden;
 }
 
 #current-weather {
-    @extend %box;
-    position:absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 30%;
-    min-width: 400px;
-    
-    h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-    }
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-    }
-    h3 {
-        font-size: 1.3rem;
-        margin-bottom: 30px;
-    }
+  @extend %box;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 30%;
+  min-width: 300px;
+  padding: 20px;
+  background-color: rgba(51, 51, 51, 0.7);
+  color: whitesmoke;
 
-    #weather-infos {
-        display: flex;
-        justify-content: space-between;
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        i {
-            width: 30px;
-        }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+  }
+
+  #weather-infos {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
     }
+    i {
+      width: 30px;
+    }
+  }
 }
 
 #top-nav {
-    display: flex;
-    justify-content: space-between;
-}
-form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+  form {
     @extend %box;
     margin-top: 20px;
     margin-left: 20px;
     display: flex;
     width: 30%;
-    min-width: 400px;
+    min-width: 300px;
+    padding: 5px 20px;
+    background-color: whitesmoke;
 
-    input, label {
-        font-size: 1.2rem;
+    input,
+    label {
+      font-size: 1.2rem;
+      background-color: #333;
+      color: whitesmoke;
     }
     div {
-        flex-grow: 1;
-        margin-bottom: 0;
+      flex-grow: 1;
+      margin-bottom: 0;
     }
 
     button {
-        @extend %btn;
-        right: 0;
-        height: 47px;
-        margin-left: 20px;
-        margin-top: 29px;
+      @extend %btn;
+      right: 0;
+      height: 47px;
+      margin-left: 20px;
+      margin-top: 11px;
     }
-}
+  }
 
-#options {
+  #options {
     @extend %box;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin: 20px 20px 0 20px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: whitesmoke;
 
-    h2 {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-    }
     button {
-        @extend %btn;
-        margin: 0 5px;
-        font-size: 1.2rem;
-        i {
-            margin-right: 10px;
-        }
+      @extend %btn;
+      font-size: 1.2rem;
+
+      &:last-of-type {
+        margin-left: 20px;
+      }
+
+      i {
+        margin-right: 10px;
+      }
     }
+  }
 }
