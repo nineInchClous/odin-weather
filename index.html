@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin Project - Weather App</title>
+    <script src="https://kit.fontawesome.com/9fc52b5779.js" crossorigin="anonymous"></script>
+    <script type="module" src="main.js" defer></script>
+</head>
+<body>
+    <section id="top-nav">
+        <form novalidate>
+            <div>
+                <label for="city-input" class="visually-hidden">City</label>
+                <input type="text" name="city-input" id="city-input" placeholder="Search a city">
+                <p class="form-error"></p>
+            </div>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <div id="options">
+            <!-- <h2>Options</h2> -->
+            <button type="button" id="temp-unit"><i class="fa-solid fa-temperature-half"></i>°<span id="temp-letter">C</span></button>
+            <button type="button" id="wind-unit"><i class="fa-solid fa-wind"></i><span id="wind-letter">k</span>ph</button>
+        </div>
+    </section>
+    
+    <section id="current-weather">
+        <div id="location-infos">
+            <h1 id="city">Quebec</h1>
+            <h2 id="country">Canada</h2>
+            <h3 id="local-time">2023-12-14 8:50</h3>
+        </div>
+        <div id="weather-infos">
+            <div>
+                <p><i class="fa-solid fa-temperature-half"></i><span id="temp">-10°C</span></p>
+                <p><i class="fa-solid fa-wind"></i><span id="wind">15.1kph</span></p>
+            </div>
+            <img src="//cdn.weatherapi.com/weather/64x64/day/113.png" alt="sunny icon" id="weather-icon">
+        </div>
+    </section>
+</body>
+</html>
