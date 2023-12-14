@@ -1,6 +1,6 @@
 // #region Imports
 import './css/styles.scss';
-import {validateForm, showPersonalizedError} from './js/formValidation';
+import { validateForm, showPersonalizedError } from './js/formValidation';
 import getWeatherByCity from './js/weather';
 
 // #endregion
@@ -14,37 +14,89 @@ const temp = document.getElementById('temp');
 const wind = document.getElementById('wind');
 const weatherIcon = document.getElementById('weather-icon');
 
+const tempUnitBtn = document.getElementById('temp-unit');
+const windUnitBtn = document.getElementById('wind-unit');
+const tempLetter = document.getElementById('temp-letter');
+const windLetter = document.getElementById('wind-letter');
+let tempUnit = 'C';
+let windUnit = 'k';
+
+let currentWeather;
+
 /**
- * 
- * @param {*} pWeather 
+ *
  */
-function displayWeather(pWeather) {
-    city.textContent = pWeather.location.name;
-    country.textContent = pWeather.location.country;
-    localTime.textContent = pWeather.location.localtime;
-    temp.textContent = pWeather.current.temp_c;
-    wind.textContent = pWeather.current.wind_kph;
-    weatherIcon.src = pWeather.current.condition.icon;
-    weatherIcon.alt = `${pWeather.current.condition.text} icon`;
+function displayWeather() {
+  city.textContent = currentWeather.location.name;
+  country.textContent = currentWeather.location.country;
+  localTime.textContent = currentWeather.location.localtime;
+
+  if (tempUnit === 'C') {
+    temp.textContent = `${currentWeather.current.temp_c}°C`;
+  } else {
+    temp.textContent = `${currentWeather.current.temp_f}°F`;
+  }
+
+  if (windUnit === 'k') {
+    wind.textContent = `${currentWeather.current.wind_kph}kph`;
+  } else {
+    wind.textContent = `${currentWeather.current.wind_mph}mph`;
+  }
+  
+  weatherIcon.src = currentWeather.current.condition.icon;
+  weatherIcon.alt = `${currentWeather.current.condition.text} icon`;
+}
+
+/**
+ *
+ */
+async function refreshWeather(pCity) {
+  currentWeather = await getWeatherByCity(pCity);
+  displayWeather(currentWeather);
 }
 
 /**
  * Handle submit form
  */
 async function handleSubmitForm() {
-    if (validateForm(form)) {
-        try {
-            const result = await getWeatherByCity(cityInput.value);
-            displayWeather(result);
-        } catch(error) {
-            showPersonalizedError(document.getElementById('city-input'), error.message);
-        }
+  if (validateForm(form)) {
+    try {
+      await refreshWeather(cityInput.value);
+    } catch (error) {
+      showPersonalizedError(
+        document.getElementById('city-input'),
+        error.message
+      );
     }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        handleSubmitForm();
-    });
+  refreshWeather('Quebec');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleSubmitForm();
+  });
+
+  tempUnitBtn.addEventListener('click', () => {
+    if (tempUnit === 'C') {
+      tempUnit = 'F';
+    } else {
+      tempUnit = 'C';
+    }
+
+    tempLetter.textContent = tempUnit;
+    displayWeather();
+  });
+
+  windUnitBtn.addEventListener('click', () => {
+    if (windUnit === 'k') {
+      windUnit = 'm';
+    } else {
+      windUnit = 'k';
+    }
+
+    windLetter.textContent = windUnit;
+    displayWeather();
+  });
 });
