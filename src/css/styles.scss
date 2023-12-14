@@ -1,4 +1,5 @@
 @import "normalize.css", "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
 :root.dark {
     --color-base-bg: rgb(18, 18, 18);
@@ -31,4 +32,88 @@ $transition: all 0.2s ease;
 }
 .hide {
     display: none;
+}
+
+%box {
+    background-color: rgba(51, 51, 51, 0.7);
+    padding: 20px;
+    width: 30%;
+    min-width: 400px;
+    position:absolute;
+    left: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 0 #333;
+    color: whitesmoke;
+}
+
+body {
+    background-image: url('../img/earth.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#current-weather {
+    @extend %box;
+    bottom: 20px;
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    h3 {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+
+    #weather-infos {
+        display: flex;
+        justify-content: space-between;
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        i {
+            width: 30px;
+        }
+    }
+}
+
+form {
+    @extend %box;
+    top: 20px;
+    display: flex;
+
+    input, label {
+        font-size: 1.2rem;
+    }
+    div {
+        flex-grow: 1;
+        margin-bottom: 0;
+    }
+
+    button {
+        right: 0;
+        background-color: whitesmoke;
+        border: none;
+        outline: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 200ms ease-in-out;
+        height: 47px;
+        margin-left: 20px;
+        margin-top: 27px;
+
+        &:hover {
+            background-color: white;
+        }
+    }
 }

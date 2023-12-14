@@ -1,0 +1,46 @@
+$border-color: grey;
+$color-error: red;
+$border-color-success: green;
+
+form {
+    padding: 20px;
+
+    label {
+        display: inline-block;
+        span {
+            margin-left: 5px;
+            color: red;
+        }
+    }
+    input, select, textarea {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        outline: none;
+        border-color: $border-color;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        transition: background-color 200ms ease-in-out;
+
+        &.invalid-input {
+            border-color: $color-error;
+        }
+        &:valid {
+            border-color: $border-color-success;
+        }
+        &:focus {
+            box-shadow: 1px 1px 2px 0 rgba(51, 51, 51, 0.5);
+            background-color: white;
+        }
+    }
+    .form-error {
+        color: $color-error;
+        font-style: italic;
+        opacity: 0;
+        transition: opacity 200ms ease-in-out;
+
+        &.show-form-error {
+            opacity: 1;
+        }
+    }
+}
