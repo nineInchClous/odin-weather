@@ -9,7 +9,7 @@
 - Use of **API** and **JSON** (this web page uses <a href="https://www.weatherapi.com/">weatherAPI</a>)
 
 ## Made with
-- ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)   
+- ![HTML5](https://img.shields.io/badge/html5-%23323330.svg?style=for-the-badge&logo=html5&logoColor=%23E34F26)   
 - ![Sass](https://img.shields.io/badge/Sass-%23323330.svg?style=for-the-badge&logo=sass&logoColor=pink)   
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 - ![npm](https://img.shields.io/badge/npm-%23323330.svg?style=for-the-badge&logo=npm&logoColor=red)
